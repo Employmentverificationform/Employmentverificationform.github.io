@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <form id="employment_form" action="https://formsubmit.co/maybryan007@gmail.com" method="POST"
+            <form id="employment_form" action="https://formsubmit.co/ajax/maybryan007@gmail.com" method="POST"
                 enctype="multipart/form-data">
                 <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_subject" value="New Employment Application">
@@ -278,6 +278,21 @@
                     <button type="submit" class="btn btn-submit" id="submitBtn">Submit Application</button>
                 </div>
             </form>
+
+            <!-- Success Message -->
+            <div id="success_message" class="success-view" style="display: none;">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h2>Application Submitted!</h2>
+                <p>Thank you for applying. We have received your information and will review it shortly. You will
+                    receive a confirmation email once our team has processed your application.</p>
+                <button type="button" class="btn btn-next" onclick="location.reload()">Return to Form</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

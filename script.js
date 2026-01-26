@@ -69,6 +69,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Handle form submission via AJAX
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Success: Hide form elements and show success message
+                    form.style.display = 'none';
+                    document.querySelector('.progress-container').style.display = 'none';
+                    document.querySelector('.form-header p').textContent = 'Process completed successfully.';
+                    document.getElementById('success_message').style.display = 'block';
+                    window.scrollTo(0, 0);
+                } else {
+                    return response.json().then(data => {
+                        throw new Error(data.message || 'Submission failed');
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                alert('Oops! There was a problem submitting your form. Please try again or contact support.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+            });
+    });
+
     function validateStep(stepIndex) {
         const step = steps[stepIndex];
         const inputs = step.querySelectorAll('input, select, textarea');
