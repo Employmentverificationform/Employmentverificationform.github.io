@@ -143,14 +143,29 @@ document.addEventListener('DOMContentLoaded', () => {
         return isValid;
     }
 
-    // File Upload Limits
+    // File Upload Limits and Validation
     const fileInput = document.getElementById('id_upload');
     if (fileInput) {
         fileInput.addEventListener('change', (e) => {
             const files = e.target.files;
-            if (files.length > 10) {
-                alert('You can only upload up to 10 files.');
+            const MAX_FILES = 10;
+            const MAX_TOTAL_SIZE = 10 * 1024 * 1024; // 10MB total
+
+            if (files.length > MAX_FILES) {
+                alert(`You can only upload up to ${MAX_FILES} files.`);
                 fileInput.value = '';
+                return;
+            }
+
+            let totalSize = 0;
+            for (let i = 0; i < files.length; i++) {
+                totalSize += files[i].size;
+            }
+
+            if (totalSize > MAX_TOTAL_SIZE) {
+                alert('The total size of your attachments exceeds the 10MB limit. Please upload smaller files.');
+                fileInput.value = '';
+                return;
             }
         });
     }
