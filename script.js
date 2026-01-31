@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStep = 0;
     const totalSteps = steps.length;
 
+    // Cloudinary Configuration
+    const CLOUDINARY_CLOUD_NAME = 'dz4mwhnxy';
+    const CLOUDINARY_UPLOAD_PRESET = 'id_default';
+
     // Initialize UI
     updateUI();
 
@@ -70,42 +74,83 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Handle form submission via AJAX
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
+        submitBtn.textContent = 'Uploading files...';
 
-        const formData = new FormData(form);
+        const fileInput = document.getElementById('id_upload');
+        const files = fileInput.files;
+        let uploadedUrls = [];
 
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
+        try {
+            if (files.length > 0) {
+                uploadedUrls = await uploadFilesToCloudinary(files);
             }
-        })
-            .then(response => {
-                if (response.ok) {
-                    // Success: Hide form elements and show success message
-                    form.style.display = 'none';
-                    document.querySelector('.progress-container').style.display = 'none';
-                    document.querySelector('.form-header p').textContent = 'Process completed successfully.';
-                    document.getElementById('success_message').style.display = 'block';
-                    window.scrollTo(0, 0);
-                } else {
-                    return response.json().then(data => {
-                        throw new Error(data.message || 'Submission failed');
-                    });
+
+            submitBtn.textContent = 'Submitting form...';
+
+            const formData = new FormData(form);
+
+            // Remove the actual file from the form data to keep submission small
+            formData.delete('attachment[]');
+
+            // Add the links instead
+            if (uploadedUrls.length > 0) {
+                formData.append('Attached Documents', uploadedUrls.join('\n'));
+            }
+
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
                 }
-            })
-            .catch(error => {
-                console.error('Submission error:', error);
-                alert('Oops! There was a problem submitting your form. Please try again or contact support.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Application';
             });
+
+            if (response.ok) {
+                form.style.display = 'none';
+                document.querySelector('.progress-container').style.display = 'none';
+                document.querySelector('.form-header p').textContent = 'Process completed successfully.';
+                document.getElementById('success_message').style.display = 'block';
+                window.scrollTo(0, 0);
+            } else {
+                const data = await response.json();
+                throw new Error(data.message || 'Submission failed');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert('Oops! ' + error.message);
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Application';
+        }
     });
+
+    async function uploadFilesToCloudinary(files) {
+        const urls = [];
+        const uploadUrl = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`;
+
+        for (let i = 0; i < files.length; i++) {
+            const formData = new FormData();
+            formData.append('file', files[i]);
+            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+            const response = await fetch(uploadUrl, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`File upload failed: ${errorData.error.message}`);
+            }
+
+            const data = await response.json();
+            urls.push(data.secure_url);
+        }
+        return urls;
+    }
 
     function validateStep(stepIndex) {
         const step = steps[stepIndex];
